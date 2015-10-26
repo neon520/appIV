@@ -1,0 +1,18 @@
+{% extends "templates/base.html" %}
+
+{% block content %}
+
+
+                     <div class="uk-h1">
+                       Calificaciones registradas
+                     </div>
+
+
+                     <ul class="uk-list uk-list-striped">
+                       {% for cali in calificaciones %}
+                         <li>{{ cali.nombre }} {{ cali.id }} {{ cali.nota }}</li>
+                       {% endfor %}
+                    </ul>
+
+{% endblock %}
+

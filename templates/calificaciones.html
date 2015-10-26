@@ -1,0 +1,18 @@
+{% extends "templates/base.html" %}
+
+{% block content %}
+
+
+                     <div class="uk-h1">
+                       Calificaciones registradas
+                     </div>
+
+
+                     <ul class="uk-list uk-list-striped">
+                       {% for califica in calificaciones %}
+                         <li>{{ califica.nombre }} {{ califica.ID }} {{ califica.nota }}</li>
+                       {% endfor %}
+                    </ul>
+
+{% endblock %}
+
