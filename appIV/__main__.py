@@ -1,4 +1,7 @@
-
+from paste.urlparser import StaticURLParser
+from paste.cascade import Cascade
+from paste import httpserver
+import mimetypes
 import datetime
 import jinja2
 import os
@@ -8,6 +11,9 @@ import cgi
 
 from gestorbd import *
 
+
+
+STATIC_DIR = os.sep + 'tostatic' + os.path.abspath(os.path.dirname(__file__)) + os.sep + 'static'
 
 
 template_env = jinja2.Environment(
@@ -21,6 +27,18 @@ def validaTexto(texto):
         return False
 
 
+class StaticView(webapp2.RequestHandler):
+    def get(self, path):
+        path = os.sep + path
+        try:
+            f = open(path, 'r')
+            self.response.headers.add_header('Content-Type', mimetypes.guess_type(path)[0])
+            self.response.out.write(f.read())
+            f.close()
+        except Exception, e:
+            print 'Problem in StaticView:', e
+            self.response.set_status(404)
+
 class Empresa(webapp2.RequestHandler):
 
     def get(self):
@@ -31,7 +49,7 @@ class Empresa(webapp2.RequestHandler):
         templateVars = {"empresas" : resultados}
 
         template = template_env.get_template('templates/empresas.html')
-        #Cargamos la plantilla y le pasamos los datos cargardos
+        #Cargamos la plantilla y le pasamos los datos cargados
         self.response.out.write(template.render(templateVars))
 
 class Usuario(webapp2.RequestHandler):
@@ -44,7 +62,7 @@ class Usuario(webapp2.RequestHandler):
         templateVars = {"usuarios" : resultados}
 
         template = template_env.get_template('templates/usuarios.html')
-        #Cargamos la plantilla y le pasamos los datos cargardos
+        #Cargamos la plantilla y le pasamos los datos cargados
         self.response.out.write(template.render(templateVars))
 
 class Calificar(webapp2.RequestHandler):
@@ -57,7 +75,8 @@ class Calificar(webapp2.RequestHandler):
         templateVars = {"calificaciones" : resultados}
 
         template = template_env.get_template('templates/calificaciones.html')
-        #Cargamos la plantilla y le pasamos los datos cargardos
+        #Cargamos la plantilla y le pasamos los datos cargados        
+        template_values = {'STATIC_DIR': STATIC_DIR }
         self.response.out.write(template.render(templateVars))
 
 
@@ -71,7 +90,8 @@ class WebUsuario(webapp2.RequestHandler):
     
     def get(self):
         template=template_env.get_template('templates/registroUsuario.html')
-        self.response.out.write(template.render())
+        template_values = {'STATIC_DIR': STATIC_DIR }
+        self.response.write(template.render(template_values))
     '''
     def post(self):
 
@@ -113,7 +133,8 @@ class WebEmpresa(webapp2.RequestHandler):
 
     def get(self):
         template=template_env.get_template('templates/registroEmpresa.html')
-        self.response.out.write(template.render())
+        template_values = {'STATIC_DIR': STATIC_DIR }
+        self.response.write(template.render(template_values))
 
     def post(self):
 
@@ -137,7 +158,8 @@ class WebCalificar(webapp2.RequestHandler):
 
     def get(self):
         template=template_env.get_template('templates/registroCalificar.html')
-        self.response.out.write(template.render())
+        template_values = {'STATIC_DIR': STATIC_DIR }
+        self.response.write(template.render(template_values))
 
     def post(self):
 
@@ -162,7 +184,8 @@ class WebCalificar(webapp2.RequestHandler):
 class WebBorrarCali(webapp2.RequestHandler):
     def get(self):
         template=template_env.get_template('templates/borrarCalificacion.html')
-        self.response.out.write(template.render())
+        template_values = {'STATIC_DIR': STATIC_DIR }
+        self.response.write(template.render(template_values))
 
     def post(self):
 
@@ -195,7 +218,8 @@ class MainPage(webapp2.RequestHandler):
             'user': user
             }
         '''
-        self.response.out.write(template.render())
+        template_values = {'STATIC_DIR': STATIC_DIR }
+        self.response.write(template.render(template_values))
 
 
 app = webapp2.WSGIApplication([('/', MainPage),
@@ -205,7 +229,8 @@ app = webapp2.WSGIApplication([('/', MainPage),
                                       ('/empresas', Empresa),
                                       ('/usuarios', Usuario),
                                       ('/calificaciones', Calificar),
-                                      ('/borrarCalificacion', WebBorrarCali)],debug=True)
+                                      ('/borrarCalificacion', WebBorrarCali),
+                                      (r'/tostatic/(.+)', StaticView)],debug=True)
 
 def main():
     from paste import httpserver
