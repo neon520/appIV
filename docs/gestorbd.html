@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>gestorbd.py</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id="background"></div>
+<div id='container'>
+  <div class='section'>
+    <div class='docs'><h1>gestorbd.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="kn">import</span> <span class="nn">MySQLdb</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">Empresa</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ID</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="s">&quot;&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">Usuario</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="s">&quot;&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">Calificacion</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ID</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nota</span><span class="o">=</span> <span class="s">&quot;&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">GestorEmpresa</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">nuevaEmpresa</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="n">MySQLdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">&quot;root&quot;</span><span class="p">,</span> <span class="n">passwd</span><span class="o">=</span><span class="s">&quot;root&quot;</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s">&quot;mdb&quot;</span><span class="p">)</span>
+
+        <span class="n">sel</span><span class="o">=</span> <span class="s">&quot;Select count(*) from Empresa where (ID =&#39;&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">ID</span><span class="p">)</span><span class="o">+</span><span class="s">&quot;&#39;);&quot;</span>
+        <span class="n">query</span><span class="o">=</span><span class="s">&quot;INSERT INTO Empresa values(&quot;</span><span class="o">+</span><span class="s">&quot;&#39;&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">ID</span><span class="p">)</span><span class="o">+</span><span class="s">&quot;&#39;, &quot;</span><span class="o">+</span><span class="s">&quot;&#39;&quot;</span><span class="o">+</span><span class="n">nombre</span><span class="o">+</span><span class="s">&quot;&#39;);&quot;</span>
+        
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sel</span><span class="p">)</span>
+        <span class="n">existe</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+        
+        <span class="k">if</span> <span class="n">existe</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        	<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        
+        <span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">getEmpresas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="n">MySQLdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">&quot;root&quot;</span><span class="p">,</span> <span class="n">passwd</span><span class="o">=</span><span class="s">&quot;root&quot;</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s">&quot;mdb&quot;</span><span class="p">);</span>
+
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">query</span><span class="o">=</span><span class="s">&quot;select * from Empresa&quot;</span><span class="p">;</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+
+        <span class="n">lista</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">while</span> <span class="n">row</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">empresa</span> <span class="o">=</span> <span class="n">Empresa</span><span class="p">()</span>
+            <span class="n">empresa</span><span class="o">.</span><span class="n">ID</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">empresa</span><span class="o">.</span><span class="n">nombre</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">empresa</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-9'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-9'>#</a>
+      </div>
+      <p>print row[0], row[1]</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="n">row</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">lista</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">#DIVIDER</span>
+<span class="sd">    @classmethod</span>
+<span class="sd">    def borrarEmpresa(self, ident):</span>
+<span class="sd">        db = MySQLdb.connect(host=&quot;localhost&quot;, user=&quot;root&quot;, passwd=&quot;root&quot;, db=&quot;mdb&quot;); #La conexión está clara.</span>
+<span class="sd">        query=&quot;DELETE FROM Empresa WHERE ID=&quot;+ident+&quot;;&quot;</span>
+<span class="sd">        cursor = db.cursor()</span>
+<span class="sd">        cursor.execute(query);</span>
+<span class="sd">        db.commit()</span>
+<span class="sd">        cursor.close()</span>
+<span class="sd">        db.close()</span>
+<span class="sd">&#39;&#39;&#39;</span> 
+
+<span class="k">class</span> <span class="nc">GestorUsuario</span><span class="p">:</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">nuevoUsuario</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="n">MySQLdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">&quot;root&quot;</span><span class="p">,</span> <span class="n">passwd</span><span class="o">=</span><span class="s">&quot;root&quot;</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s">&quot;mdb&quot;</span><span class="p">)</span>
+
+        <span class="n">sel</span><span class="o">=</span> <span class="s">&quot;Select count(*) from Usuario where (nombre_u =&#39;&quot;</span><span class="o">+</span><span class="n">nombre</span><span class="o">+</span><span class="s">&quot;&#39;);&quot;</span>
+        <span class="n">query</span><span class="o">=</span><span class="s">&quot;INSERT INTO Usuario values(&quot;</span><span class="o">+</span><span class="s">&quot;&#39;&quot;</span><span class="o">+</span><span class="n">nombre</span><span class="o">+</span><span class="s">&quot;&#39;);&quot;</span>
+        
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sel</span><span class="p">)</span>
+        <span class="n">existe</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+        
+        <span class="k">if</span> <span class="n">existe</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        	<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        
+        <span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">getUsuarios</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="n">MySQLdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">&quot;root&quot;</span><span class="p">,</span> <span class="n">passwd</span><span class="o">=</span><span class="s">&quot;root&quot;</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s">&quot;mdb&quot;</span><span class="p">);</span>
+
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">query</span><span class="o">=</span><span class="s">&quot;select * from Usuario&quot;</span><span class="p">;</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+
+        <span class="n">lista</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">while</span> <span class="n">row</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="n">Usuario</span><span class="p">()</span>
+            <span class="n">user</span><span class="o">.</span><span class="n">nombre</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">user</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-10'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-10'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="n">row</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">lista</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-11'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-11'>#</a>
+      </div>
+      <p>print row[0], row[1]</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">GestorCalificar</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-12'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-12'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">nuevaCali</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre_u</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="n">nota</span><span class="p">):</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="n">MySQLdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">&quot;root&quot;</span><span class="p">,</span> <span class="n">passwd</span><span class="o">=</span><span class="s">&quot;root&quot;</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s">&quot;mdb&quot;</span><span class="p">)</span>
+        <span class="n">gs</span><span class="o">=</span><span class="n">GestorUsuario</span><span class="p">()</span>
+        <span class="n">sel_c</span><span class="o">=</span> <span class="s">&quot;SELECT count(*) from Califica where nombre_u =&quot;</span><span class="o">+</span><span class="s">&quot;&#39;&quot;</span><span class="o">+</span><span class="n">nombre_u</span><span class="o">+</span><span class="s">&quot;&#39; AND ID=&#39;&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">ID</span><span class="p">)</span><span class="o">+</span><span class="s">&quot;&#39;;&quot;</span>
+        <span class="n">sel_e</span><span class="o">=</span> <span class="s">&quot;SELECT count(*) from Empresa where (ID =&quot;</span><span class="o">+</span><span class="s">&quot;&#39;&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">ID</span><span class="p">)</span><span class="o">+</span><span class="s">&quot;&#39;);&quot;</span>
+        <span class="n">query</span><span class="o">=</span><span class="s">&quot;INSERT INTO Califica values(&quot;</span><span class="o">+</span><span class="s">&quot;&#39;&quot;</span><span class="o">+</span><span class="n">nombre_u</span><span class="o">+</span><span class="s">&quot;&#39;, &#39;&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">ID</span><span class="p">)</span><span class="o">+</span><span class="s">&quot;&#39;, &#39;&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">nota</span><span class="p">)</span><span class="o">+</span><span class="s">&quot;&#39;);&quot;</span>
+        
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sel_c</span><span class="p">)</span>
+        <span class="n">existe_c</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sel_e</span><span class="p">)</span>
+        <span class="n">existe_e</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+        
+        <span class="k">if</span> <span class="n">existe_c</span><span class="o">==</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">existe_e</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        	<span class="n">gs</span><span class="o">.</span><span class="n">nuevoUsuario</span><span class="p">(</span><span class="n">nombre_u</span><span class="p">)</span>
+        	<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        
+        <span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>	
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">borrarCali</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre_u</span><span class="p">,</span> <span class="n">ID</span><span class="p">):</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="n">MySQLdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">&quot;root&quot;</span><span class="p">,</span> <span class="n">passwd</span><span class="o">=</span><span class="s">&quot;root&quot;</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s">&quot;mdb&quot;</span><span class="p">)</span>
+
+        <span class="n">sel_c</span><span class="o">=</span> <span class="s">&quot;SELECT count(*) from Califica where nombre_u =&quot;</span><span class="o">+</span><span class="s">&quot;&#39;&quot;</span><span class="o">+</span><span class="n">nombre_u</span><span class="o">+</span><span class="s">&quot;&#39; AND ID=&#39;&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">ID</span><span class="p">)</span><span class="o">+</span><span class="s">&quot;&#39;;&quot;</span>
+        <span class="n">query</span><span class="o">=</span><span class="s">&quot;DELETE FROM Califica where nombre_u =&quot;</span><span class="o">+</span><span class="s">&quot;&#39;&quot;</span><span class="o">+</span><span class="n">nombre_u</span><span class="o">+</span><span class="s">&quot;&#39; AND ID=&#39;&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">ID</span><span class="p">)</span><span class="o">+</span><span class="s">&quot;&#39;;&quot;</span>
+        
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sel_c</span><span class="p">)</span>
+        <span class="n">existe_c</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+        
+
+        <span class="k">if</span> <span class="n">existe_c</span><span class="o">&gt;</span><span class="mi">0</span> <span class="p">:</span>
+        	<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        
+        <span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">getCalis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="n">MySQLdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s">&quot;root&quot;</span><span class="p">,</span> <span class="n">passwd</span><span class="o">=</span><span class="s">&quot;root&quot;</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s">&quot;mdb&quot;</span><span class="p">);</span>
+
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">query</span><span class="o">=</span><span class="s">&quot;select * from Califica&quot;</span><span class="p">;</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+
+        <span class="n">lista</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">while</span> <span class="n">row</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">cal</span> <span class="o">=</span> <span class="n">Calificacion</span><span class="p">()</span>
+            <span class="n">cal</span><span class="o">.</span><span class="n">ID</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">cal</span><span class="o">.</span><span class="n">nombre</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">cal</span><span class="o">.</span><span class="n">nota</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cal</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-13'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-13'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="n">row</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">lista</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-14'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-14'>#</a>
+      </div>
+      <p>print row[0], row[1]</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>
