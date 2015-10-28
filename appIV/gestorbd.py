@@ -29,7 +29,7 @@ class GestorEmpresa:
 
     @classmethod
     def nuevaEmpresa(self, ID, nombre):
-        db = MySQLdb.connect(host="localhost", user="root", passwd="", db="mdb")
+        db = MySQLdb.connect(host="localhost", user="root", db="mdb")
 
         sel= "Select count(*) from Empresa where (ID ='"+str(ID)+"');"
         query="INSERT INTO Empresa values("+"'"+str(ID)+"', "+"'"+nombre+"');"
@@ -48,7 +48,7 @@ class GestorEmpresa:
 
     @classmethod
     def getEmpresas(self):
-        db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mdb");
+        db = MySQLdb.connect(host="localhost", user="root", db="mdb");
 
         cursor = db.cursor()
         query="select * from Empresa";
@@ -86,7 +86,7 @@ class GestorUsuario:
 
     @classmethod
     def nuevoUsuario(self, nombre):
-        db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mdb")
+        db = MySQLdb.connect(host="localhost", user="root", db="mdb")
 
         sel= "Select count(*) from Usuario where (nombre_u ='"+nombre+"');"
         query="INSERT INTO Usuario values("+"'"+nombre+"');"
@@ -105,7 +105,7 @@ class GestorUsuario:
 
     @classmethod
     def getUsuarios(self):
-        db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mdb");
+        db = MySQLdb.connect(host="localhost", user="root", db="mdb");
 
         cursor = db.cursor()
         query="select * from Usuario";
@@ -130,7 +130,7 @@ class GestorCalificar:
 
     @classmethod
     def nuevaCali(self, nombre_u, ID, nota):
-        db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mdb")
+        db = MySQLdb.connect(host="localhost", user="root", db="mdb")
         gs=GestorUsuario()
         sel_c= "SELECT count(*) from Califica where nombre_u ="+"'"+nombre_u+"' AND ID='"+str(ID)+"';"
         sel_e= "SELECT count(*) from Empresa where (ID ="+"'"+str(ID)+"');"
@@ -153,7 +153,7 @@ class GestorCalificar:
 
     @classmethod
     def borrarCali(self, nombre_u, ID):
-        db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mdb")
+        db = MySQLdb.connect(host="localhost", user="root", db="mdb")
 
         sel_c= "SELECT count(*) from Califica where nombre_u ="+"'"+nombre_u+"' AND ID='"+str(ID)+"';"
         query="DELETE FROM Califica where nombre_u ="+"'"+nombre_u+"' AND ID='"+str(ID)+"';"
@@ -175,7 +175,7 @@ class GestorCalificar:
 
     @classmethod
     def getCalis(self):
-        db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mdb");
+        db = MySQLdb.connect(host="localhost", user="root", db="mdb");
 
         cursor = db.cursor()
         query="select * from Califica";
