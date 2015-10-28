@@ -2,6 +2,6 @@ language: python
 python:
  - "2.7"
 sudo: required
-install: "script.sh"
+install: "sudo apt-get update && sudo apt-get build-dep python-mysqldb && mysql -u root -p < appIV/bd.sql && python setup.py install"
 #Script
 script: cd appIV && nosetests test_sure.py
