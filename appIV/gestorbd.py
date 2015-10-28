@@ -29,7 +29,7 @@ class GestorEmpresa:
 
     @classmethod
     def nuevaEmpresa(self, ID, nombre):
-        db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mdb")
+        db = MySQLdb.connect(host="localhost", user="root", passwd="", db="mdb")
 
         sel= "Select count(*) from Empresa where (ID ='"+str(ID)+"');"
         query="INSERT INTO Empresa values("+"'"+str(ID)+"', "+"'"+nombre+"');"
