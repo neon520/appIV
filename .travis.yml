@@ -1,7 +1,7 @@
 language: python
 python:
  - "2.7"
-sudo: required
-install: "sudo apt-get update && mysql -u root -p < appIV/bd.sql && python setup.py install"
+sudo: required -p ""
+install: "sudo apt-get update && mysql -u root -p "" < appIV/bd.sql && python setup.py install"
 #Script
 script: cd appIV && nosetests test_sure.py
